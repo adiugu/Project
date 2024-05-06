@@ -1,0 +1,53 @@
+import time
+
+# Define personality traits
+personality_traits = {
+    'adventurous': 'You are adventurous and love taking risks.',
+    'social': 'You are social and enjoy being around people.',
+    'calm': 'You are calm and prefer a peaceful environment.'
+}
+
+# Define scenarios and their corresponding trait influences
+scenarios = [
+    {
+        'question': "You have a free weekend. What do you choose to do?\n(a) Go hiking or try a new outdoor activity.\n(b) Hang out with friends or attend a social event.\n(c) Relax at home with a book or a movie.\n",
+        'traits': {'a': 'adventurous', 'b': 'social', 'c': 'calm'}
+    },
+    {
+        'question': "You encounter a problem at work/school. How do you handle it?\n(a) Dive into finding a solution immediately.\n(b) Discuss it with colleagues/friends to get different perspectives.\n(c) Take a step back, analyze the situation, and then take action.\n",
+        'traits': {'a': 'adventurous', 'b': 'social', 'c': 'calm'}
+    },
+    {
+        'question': "You're planning a vacation. What's your priority?\n(a) Adventure and trying new things.\n(b) Visiting friends or meeting new people.\n(c) Relaxation and tranquility.\n",
+        'traits': {'a': 'adventurous', 'b': 'social', 'c': 'calm'}
+    }
+]
+
+# Function to conduct personality assessment based on scenarios
+def assess_personality():
+    print("Welcome to the Personality Assessment Game!\n")
+    time.sleep(1)
+    print("Answer the following questions to determine your personality:\n")
+    time.sleep(1)
+    
+    personality_score = {'adventurous': 0, 'social': 0, 'calm': 0}
+    
+    # Ask questions and update personality scores
+    for scenario in scenarios:
+        answer = input(scenario['question']).lower()
+        while answer not in ['a', 'b', 'c']:
+            print("Please choose a valid option.")
+            answer = input(scenario['question']).lower()
+        trait = scenario['traits'][answer]
+        personality_score[trait] += 1
+
+    # Determine dominant personality trait
+    dominant_trait = max(personality_score, key=personality_score.get)
+    
+    print("\nAnalyzing your responses...\n")
+    time.sleep(1)
+    print("Your personality profile:")
+    print(personality_traits[dominant_trait])
+
+# Start the game
+assess_personality()
